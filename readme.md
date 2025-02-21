@@ -1,5 +1,7 @@
 # AuthOpenIDConnect - LimeSurvey Auth Plugin
 
+[![Build plugin](https://github.com/fermion2020/AuthOpenIDConnect/actions/workflows/build.yml/badge.svg)](https://github.com/fermion2020/AuthOpenIDConnect/actions/workflows/build.yml)
+
 ## Disclaimer
 Original plugin by https://github.com/Shnoulle/AuthOpenIDConnect
 
