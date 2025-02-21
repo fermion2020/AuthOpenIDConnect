@@ -26,7 +26,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Create zip file
-      run: zip -r AuthOpenIDConnect.zip AuthOpenIDConnect/*
+      run: zip -r AuthOpenIDConnect.zip . -i AuthOpenIDConnect/*
 
     - name: Get version from changelog
       id: get_version
