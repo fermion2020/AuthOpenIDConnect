@@ -25,20 +25,8 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    - name: List contents 
-      run: ls -lah 
-
-    - name: List contents of subdirectories
-      run: find . -type d -exec ls -la {} \;
-
-    - name: Clean up old artifacts
-      run: rm -f AuthOpenIDConnect.zip      
-
     - name: Create zip file
-      run: zip -r AuthOpenIDConnect.zip . -i AuthOpenIDConnect/*
-
-    - name: List contents after creating zip file
-      run: ls -lah 
+      run: zip -r AuthOpenIDConnect.zip ./*
 
     - name: Get version from changelog
       id: get_version
