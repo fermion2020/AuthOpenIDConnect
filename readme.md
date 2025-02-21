@@ -1,5 +1,13 @@
 # AuthOpenIDConnect - LimeSurvey Auth Plugin
 
+## Disclaimer
+Original plugin by https://github.com/Shnoulle/AuthOpenIDConnect
+
+updated by fermion2020
+
+## Updates
+Updated the compatibility in the config.xml file
+
 ## Install
 
 1. Download the plugin.
