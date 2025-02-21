@@ -1,0 +1,59 @@
+name: PHP Composer
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+          
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Create zip file
+      run: zip -r AuthOpenIDConnect.zip AuthOpenIDConnect/*
+
+    - name: Get version from changelog
+      id: get_version
+      run: |
+        VERSION=$(awk '/^## [0-9]+\.[0-9]+\.[0-9]+/ {print $2; exit}' changelog.md)
+        echo "::set-output name=VERSION::${VERSION}"
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.get_version.outputs.VERSION }}
+        release_name: Release ${{ steps.get_version.outputs.VERSION }}
+        body: |
+          $(awk -v version=${{ steps.get_version.outputs.VERSION }} '/^## 'version'/ {flag=1; next} /^## /{flag=0} flag' changelog.md)
+        draft: false
+        prerelease: false
+
+    - name: Upload release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./AuthOpenIDConnect.zip
+        asset_name: AuthOpenIDConnect.zip
+        asset_content_type: application/zip          
+        
