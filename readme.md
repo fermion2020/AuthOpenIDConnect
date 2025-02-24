@@ -12,7 +12,9 @@ Updated the compatibility in the config.xml file
 
 ## Install
 
-1. Download the plugin.
+Use the [releases](https://github.com/fermion2020/AuthOpenIDConnect/releases) page to download the latest built version. Or go through the build process on your environment.
+
+1. Clone this repo.
 
 2. Install necessary dependencies via composer.
 ```
