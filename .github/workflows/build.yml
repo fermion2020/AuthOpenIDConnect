@@ -34,6 +34,14 @@ jobs:
         VERSION=$(awk '/^## [0-9]+\.[0-9]+\.[0-9]+/ {print $2; exit}' changelog.md)
         echo "::set-output name=VERSION::${VERSION}"
 
+    - name: Extract release notes
+      id: extract_notes
+      run: |
+        VERSION="${{ steps.get_version.outputs.VERSION }}"
+        VERSION_NOTES=$(awk -v version="$VERSION" '/^## '"$version"'/ {flag=1; next} /^## /{flag=0} flag' changelog.md)
+        echo "::set-output name=VERSION_NOTES::$VERSION_NOTES" 
+
+
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
@@ -43,7 +51,7 @@ jobs:
         tag_name: ${{ steps.get_version.outputs.VERSION }}
         release_name: Release ${{ steps.get_version.outputs.VERSION }}
         body: |
-          $(awk -v version="${{ steps.get_version.outputs.VERSION }}" '/^## '"$version"'/ {flag=1; next} /^## /{flag=0} flag' changelog.md)
+          ${{ steps.get_version.outputs.VERSION_NOTES }}
         draft: false
         prerelease: false
 
