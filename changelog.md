@@ -1,3 +1,10 @@
+## 1.0.3 2025-02-24 fermion2020@github
+
+### Added 
+  - Pin to the latest openid-client version
+  - Switch php version to 8.2 in build image
+
+
 ## 1.0.2 2025-02-21 fermion2020@github
 
   - Fix build pipeline

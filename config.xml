@@ -4,10 +4,10 @@
         <name>AuthOpenIDConnect</name>
         <type>plugin</type>
         <creationDate>2020-02-17</creationDate>
-        <lastUpdate>2025-02-21</lastUpdate>
+        <lastUpdate>2025-02-24</lastUpdate>
         <author>Jan Menzel</author>
         <authorUrl>https://github.com/janmenzel</authorUrl>
-        <version>1.0.1</version>
+        <version>1.0.3</version>
         <license>GNU General Public License version 2 or later</license>
         <description>OpenID Connect authentication plugin for LimeSurvey</description>
     </metadata>
