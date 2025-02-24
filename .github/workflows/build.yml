@@ -43,7 +43,7 @@ jobs:
         tag_name: ${{ steps.get_version.outputs.VERSION }}
         release_name: Release ${{ steps.get_version.outputs.VERSION }}
         body: |
-          $(awk -v version=${{ steps.get_version.outputs.VERSION }} '/^## 'version'/ {flag=1; next} /^## /{flag=0} flag' changelog.md)
+          $(awk -v version="${{ steps.get_version.outputs.VERSION }}" '/^## '"$version"'/ {flag=1; next} /^## /{flag=0} flag' changelog.md)
         draft: false
         prerelease: false
 
